@@ -7,13 +7,17 @@ function new_ind = mutation(pop, i, SS)
     new_ind.geneticOps_prob = 0;
     
     for i=1:d
-        mu = (SS(i,2) + SS(i,1))/2;
-        sigma = (SS(i,2) - SS(i,1))/6;
-        new_ind.var(i) = ind.var(i) + normrnd(mu,sigma);
-        if (new_ind.var(i) < SS(i,1))
-            new_ind.var(i) = SS(i,1);
-        elseif (new_ind.var(i) > SS(i,2))
-            new_ind.var(i) = SS(i,2);
+        if(rand > 0.5)
+%             mu = (SS(i,2) + SS(i,1))/2;
+%             sigma = (SS(i,2) - SS(i,1))/6;
+            new_ind.var(i) = ind.var(i) + normrnd(0,0.2);
+            if (new_ind.var(i) < SS(i,1))
+                new_ind.var(i) = SS(i,1);
+            elseif (new_ind.var(i) > SS(i,2))
+                new_ind.var(i) = SS(i,2);
+            end
+        else
+            new_ind.var(i) = ind.var(i);
         end
     end
 end
