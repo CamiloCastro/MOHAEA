@@ -44,11 +44,5 @@ function [Sol] = FNDS(P)
         i=i+1;
         S{i}=Q;
         Sol{i}=aux;
-    end
-%      mensaje='Frente de pareto ';
-%      for i=1:length(Sol)-1
-%          mensaje1=strcat(mensaje,'-',int2str(i),':');
-%          disp(mensaje1);        
-%          disp(Sol{i});
-%      end    
+    end   
 end
