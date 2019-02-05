@@ -22,17 +22,17 @@ clear;
 %KUR Parameters
 SS = [-5 5;-5 5;-5 5];
 obj = @KUR;
-ndata = 30;
-x1 = linspace(-1.3158,0.2632,ndata);
-x2 = linspace(-1.3158,0.2632,ndata);
-X = [];
-for i=1:length(x1)
-    for j=1:length(x2)
-        X =[X [x1(i)*ones(1,length(x1));x2(j)*ones(1,length(x2));linspace(-1.3158,0.2632,ndata)]];
-    end
-end
-Y = obj(X);
-% load('KUR.mat');
+% ndata = 30;
+% x1 = linspace(-1.3158,0.2632,ndata);
+% x2 = linspace(-1.3158,0.2632,ndata);
+% X = [];
+% for i=1:length(x1)
+%     for j=1:length(x2)
+%         X =[X [x1(i)*ones(1,length(x1));x2(j)*ones(1,length(x2));linspace(-1.3158,0.2632,ndata)]];
+%     end
+% end
+% Y = obj(X);
+load('KUR.mat');
 
 
 
@@ -69,21 +69,21 @@ min = true;
 n_iterations = 100;
 pop_size = 100;
 
-% tic
-% pop = MOHAEA(GOP, obj, pop_size, n_iterations, SS, true, Y);
-% toc
+tic
+pop = MOHAEA(GOP, obj, pop_size, n_iterations, SS, true, Y);
+toc
 
 
 
 
-SolY = get_front_values(Y, 0);
-Y=Y(:,SolY);
-Y = (sortrows(Y',1))';
+% SolY = get_front_values(Y, 0);
+% Y=Y(:,SolY);
+% Y = (sortrows(Y',1))';
 plot( Y(1,:),Y(2,:))
-% hold on;
-% for i=1:length(pop)        
-%     plot(pop(i).fobj(1),pop(i).fobj(2),'*r');           
-% end
+hold on;
+for i=1:length(pop)        
+    plot(pop(i).fobj(1),pop(i).fobj(2),'*r');           
+end
 
 
 
