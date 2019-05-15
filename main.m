@@ -1,4 +1,4 @@
-clear;
+% clear;
 
 %SCH Parameters
 % SS = [0 2];
@@ -20,25 +20,25 @@ clear;
 
 
 %KUR Parameters
-SS = [-5 5;-5 5;-5 5];
-obj = @KUR;
-% ndata = 30;
-% x1 = linspace(-1.3158,0.2632,ndata);
-% x2 = linspace(-1.3158,0.2632,ndata);
+% SS = [-5 5;-5 5;-5 5];
+% obj = @KUR;
+% ndata = 150;
+% x1 = linspace(-5,5,ndata);
+% x2 = linspace(-5,5,ndata);
 % X = [];
 % for i=1:length(x1)
 %     for j=1:length(x2)
-%         X =[X [x1(i)*ones(1,length(x1));x2(j)*ones(1,length(x2));linspace(-1.3158,0.2632,ndata)]];
+%         X =[X [x1(i)*ones(1,length(x1));x2(j)*ones(1,length(x2));linspace(-5,5,ndata)]];
 %     end
 % end
 % Y = obj(X);
-load('KUR.mat');
+% load('KUR.mat');
 
 
 
 
 %ZDT1 Parameters
-% SS = repmat([0 0.1],29,1);
+% SS = repmat([0 1],29,1);
 % SS = [0 1; SS];
 % obj = @ZDT1;
 % x1=linspace( 0, 1 );
@@ -47,12 +47,12 @@ load('KUR.mat');
 % Y = obj(X);
 
 %ZDT3 Parameters
-% SS = repmat([0 1],30,1);
-% obj = @ZDT3;
-% x1=linspace( 0, 1 );
-% xi=zeros(29, 100);
-% X=[x1;xi];
-% Y = obj(X);
+SS = repmat([0 1],30,1);
+obj = @ZDT3;
+x1=linspace( 0, 1 );
+xi=zeros(29, 100);
+X=[x1;xi];
+Y = obj(X);
 
 %ZDT4 Parameters
 % SS = repmat([0 0.1],9,1);
@@ -64,26 +64,26 @@ load('KUR.mat');
 % Y = obj(X);
 
 
-GOP = {@gauss_mutation @arithmetic_crossover};
+GOP = {@power_law_mutation @arithmetic_crossover};
 min = true;
-n_iterations = 100;
+n_iterations = 1000;
 pop_size = 100;
 
-tic
+% tic
 pop = MOHAEA(GOP, obj, pop_size, n_iterations, SS, true, Y);
-toc
+% toc
 
 
 
 
-% SolY = get_front_values(Y, 0);
-% Y=Y(:,SolY);
-% Y = (sortrows(Y',1))';
+SolY = get_front_values(Y, 0);
+Y=Y(:,SolY);
+Y = (sortrows(Y',1))';
 plot( Y(1,:),Y(2,:))
-hold on;
-for i=1:length(pop)        
-    plot(pop(i).fobj(1),pop(i).fobj(2),'*r');           
-end
+% hold on;
+% for i=1:length(pop)        
+%     plot(pop(i).fobj(1),pop(i).fobj(2),'*r');           
+% end
 
 
 

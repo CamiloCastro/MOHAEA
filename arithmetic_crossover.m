@@ -25,9 +25,14 @@ function new_ind = arithmetic_crossover(pop, i, SS)
         end
     end
     
-    for i=1:d        
-        alpha = rand;
-        new_ind(1).var(i) = alpha*ind.var(i) + (1-alpha)*best_ind.var(i);        
-        new_ind(2).var(i) = (1-alpha)*ind.var(i) + alpha*best_ind.var(i);        
+    alpha = rand;
+    alpha_1 = rand;
+    neg_alpha = 1.0 - alpha;
+    neg_alpha_1 = 1.0 - alpha_1;
+    
+    
+    for i=1:d                
+        new_ind(1).var(i) = alpha*ind.var(i) + neg_alpha*best_ind.var(i);        
+        new_ind(2).var(i) = alpha_1*ind.var(i) + neg_alpha_1*best_ind.var(i);        
     end
 end
